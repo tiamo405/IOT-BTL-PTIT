@@ -1,5 +1,4 @@
 import cv2
-from mtcnn import MTCNN
 
 import os
 import sys
@@ -7,8 +6,11 @@ root = os.getcwd()
 pwd = os.path.dirname(os.path.realpath("face"))
 sys.path.insert(0, root)
 
-from face.utils_face import align_face
 from face.detect import Face_Detect
+import faiss_
+
+THRESHOLD_FACE_DETECT = 0.5
+THRESHOLD_FACE_EMB = 0.3
 
 # Khởi tạo detector khuôn mặt
 detector_face = Face_Detect()
@@ -24,8 +26,18 @@ while cap.isOpened():
         break
 
     bbox, dsts, confidences = detector_face.detect(cv_image= frame)
+    if dsts is None : 
+        continue
+
     box, dst, confidence = bbox[0], dsts[0], confidences[0]
-    
+    if confidence < THRESHOLD_FACE_DETECT: 
+        continue
+    face_align = detector_face.align_face(frame, dst)
+    emb, score = detector_face.get_emb(frame, dst)
+    if score < THRESHOLD_FACE_EMB :
+        continue
+    index = faiss_.faiss_search(emb)
+    print(index)
     cv2.imwrite('debug.jpg', frame)
     break
     # # Hiển thị frame với kết quả detect
