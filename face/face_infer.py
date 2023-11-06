@@ -2,7 +2,12 @@ import numpy as np
 import cv2
 import grpc
 from tritonclient.grpc import service_pb2, service_pb2_grpc
-
+import os
+import sys
+root = os.getcwd()
+pwd = os.path.dirname(os.path.realpath("."))
+sys.path.insert(0, root)
+import config 
 
 # from src import TRITON_HOST, TRITON_PORT
 
@@ -152,15 +157,24 @@ class FaceEmbedding:
 
 if __name__=="__main__":
 
-    IMAGE = "0005.jpg"
-    import os
-    image = cv2.imread(IMAGE)
-    TRITON_HOST = os.environ.get('TRITON_HOST')
-    TRITON_POST = os.environ.get('TRITON_POST')
+    # TRITON_HOST = os.environ.get('TRITON_HOST')
+    # TRITON_POST = os.environ.get('TRITON_POST')
 
+    TRITON_HOST = config.TRITON_HOST
+    TRITON_POST = config.TRITON_PORT
+    embs = []
     Yujii_A = FaceEmbedding(TRITON_HOST= TRITON_HOST, TRITON_PORT= TRITON_POST)
-    embs, scores = Yujii_A.get_emb(image)
-    print(embs)
-    print("====")
-    print(scores)
-    print("====")
+    # for file in os.listdir('data-face'):
+    #     path = os.path.join('data-face', file)
+    #     image = cv2.imread(path)
+
+    #     emb, score = Yujii_A.get_emb(image)
+    #     embs.append(emb)
+
+    image = cv2.imread('/mnt/nvme0n1/phuongnam/IOT/face_align.jpg')
+    emb, score = Yujii_A.get_emb(image)
+    # embs.append(emb)
+    # embs = np.vstack(embs)
+    np.save('tmp/emb.npy', emb)
+    emb = np.load('tmp/emb.npy')
+    print(emb.shape)
