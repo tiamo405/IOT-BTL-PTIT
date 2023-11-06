@@ -33,7 +33,8 @@ class Face_Detect():
             keypoints = result['keypoints']  # Các điểm trên khuôn mặt
             dst = self._dst(keypoints= keypoints)
 
-            bbox.append((x, y, w, h))
+            box = utils_face.xywh2xyxy((x, y, w, h))
+            bbox.append(box)
             dsts.append(dst)
             confidences.append(confidence)
         return bbox, dsts, confidences
