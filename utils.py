@@ -103,9 +103,28 @@ def check_timeVisit(day, month, year, timeVisit, timeStart, timeEnd ) :
     # Kiểm tra xem thời gian thăm có nằm trong khoảng thời gian cho phép hay không
     return timestamp_start <= timeVisit <= timestamp_end 
 
+# def checkbbox(box):
+
+def datenow2timestamp():
+    now = datetime.now()
+    # Get the local timezone
+    local_tz = pytz.timezone('Asia/Ho_Chi_Minh')
+    
+    # Localize the naive datetime to the local timezone
+    local_date = local_tz.localize(now, is_dst=None)
+    
+    # Convert the localized datetime object to UTC
+    utc_date = local_date.astimezone(pytz.UTC)
+    
+    # Convert the UTC datetime object to a UNIX timestamp
+    timestamp = int(utc_date.timestamp())
+    
+    return timestamp
+
 if __name__ =="__main__":
     # img = read_img()
-    timestamp = 1695954067  # Thay thế giá trị này bằng timestamp bạn muốn chuyển đổi
+    timestamp = 1699288262  # Thay thế giá trị này bằng timestamp bạn muốn chuyển đổi
     formatted_date = timestamp_to_date(timestamp)
     print(formatted_date)
+    print(datenow2timestamp())
     
