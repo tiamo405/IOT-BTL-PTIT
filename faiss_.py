@@ -21,6 +21,9 @@ def faiss_search(emb, threshold= 0.5 , device= 'cpu', k = 1):
   else :
     return -1
 
+# def index2person(index):
+
+
 if __name__ == "__main__":  
   emb = np.load('tmp/emb.npy')
   print('index: ',faiss_search(emb= emb))
