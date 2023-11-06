@@ -8,6 +8,7 @@ root = os.getcwd()
 pwd = os.path.dirname(os.path.realpath("."))
 sys.path.insert(0, root)
 import config 
+import utils
 
 class Minio_Client():
     def __init__(self, endpoint = config.ENDPOINT, access_key = config.ACCESS_KEY, secret_key = config.SECRET_KEY, secure = config.SECURE):
@@ -22,7 +23,7 @@ class Minio_Client():
             secure= self.secure,# True nếu sử dụng kết nối an toàn (HTTPS)
         )
         
-    def get_embs(self, bucket='84soft', name_file = 'embs.npy'):
+    def get_embs(self, bucket=config.BUCKET, name_file = 'embs.npy'):
         try:
             self.minio_client.fget_object(bucket_name=bucket, 
                                         object_name =name_file , file_path= os.path.join('tmp', name_file))
@@ -33,9 +34,16 @@ class Minio_Client():
         except :
             return None
 
-    def upload_file(minio_client: Minio, bucket, file):
-        minio_client.fput_object(
-            bucket_name= bucket, object_name = file, file_path= file 
+    def upload_file(self, bucket=config.BUCKET, file=None):
+        # timestape = utils.datenow2timestamp()
+        # if file is None :
+        #     if file_type =='image' :
+        #         file = str(timestape)+'.jpg'
+        #     elif file_type == 'json' :
+        #         file = str(timestape)+ '.json'
+
+        self.minio_client.fput_object(
+            bucket_name= bucket, object_name = file, file_path= os.path.join('tmp', file) 
         )
 
     def get_url(self, bucket, name_file):
@@ -47,5 +55,6 @@ class Minio_Client():
     
 if __name__ == "__main__":  
     minio_clinet = Minio_Client()
-    embs = minio_clinet.get_embs(bucket= '84soft', name_file='emb.npy')
-    print(embs)
+    # embs = minio_clinet.get_embs(bucket= '84soft', name_file='emb.npy')
+    # print(embs)
+    minio_clinet.upload_file(file= 'debug.jpg')
