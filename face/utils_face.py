@@ -29,9 +29,9 @@ def align_face(cv_img, dst):
 
 def xywh2xyxy(box) :
     x,y,w,h = box
-    x_top = x - w//2
-    y_top = y - h//2
-    x_bot = x + w//2
-    y_bot = y + h//2
+    x_top = x
+    y_top = y
+    x_bot = x + w
+    y_bot = y + h
     return (x_top, y_top, x_bot, y_bot)
     
