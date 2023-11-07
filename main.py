@@ -11,20 +11,31 @@ import faiss_
 import utils
 
 from s3_minio.minio_ import Minio_Client
+from s3_minio import utils_minio
+
+from sensor import api_mocua
+
 THRESHOLD_FACE_DETECT = 0.5
 THRESHOLD_FACE_EMB = 0.3
 
 # Khởi tạo detector khuôn mặt
 detector_face = Face_Detect()
+
+# Khởi tạo Minio Clinet
 minio = Minio_Client
 
 # Đọc video từ tệp tin hoặc camera (thay đổi đối số thành 0 nếu bạn muốn sử dụng camera)
 video_path = 'test.mp4'
 cap = cv2.VideoCapture(video_path)
+
 # Đọc tần suất khung hình của luồng video (frames per second - FPS)
 fps = cap.get(cv2.CAP_PROP_FPS)
+
 # Tạo biến để đếm số frame đã xử lý
 frame_count = 0
+
+
+
 while cap.isOpened():
     # Đọc frame từ video
     ret, frame = cap.read()
@@ -53,13 +64,20 @@ while cap.isOpened():
     emb, score = detector_face.get_emb(frame, dst)
     if score < THRESHOLD_FACE_EMB :
         continue
-    timestamp = utils.datenow2timestamp()
-    cv2.imwrite(os.path.join('tmp', str(timestamp)+'.jpg'))
+
     
-
     id_person = faiss_.faiss_search(emb)
-    print(id_person)
+    if id_person == -1 :
+        continue
+    # mo cua khi thay nguoi quen
+    api_mocua.mocua()
 
+    data_id_person = utils_minio.find_metadata(id_person)
+    print(id_person)
+    
+    # day du lieu khi co nguoi moi den
+    utils_minio.push_data(data_id_person)
+    
     cv2.imwrite('debug.jpg', frame)
     break
     # # Hiển thị frame với kết quả detect
