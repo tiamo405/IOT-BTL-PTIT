@@ -1,0 +1,26 @@
+{
+    "1699332850": {
+        "customerID": "0",
+        "name": "TranPhuongNam",
+        "timeVisit": 1699332850,
+        "timestamp": 1696950763
+    },
+    "1699332851": {
+        "customerID": "-1",
+        "name": "",
+        "timeVisit": 1699332851,
+        "timestamp": 1696950763
+    },
+    "1699332852": {
+        "customerID": "246",
+        "name": "TranVanA",
+        "timeVisit": 1699332852,
+        "timestamp": 1696950763
+    },
+    "1699348200": {
+        "customerID": "246",
+        "name": "TranVanA",
+        "timeVisit": 1699348200,
+        "timestamp": 1699290000
+    }
+}

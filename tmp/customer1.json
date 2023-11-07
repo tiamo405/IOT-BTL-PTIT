@@ -1,0 +1,21 @@
+{
+    "-1":{
+        "name":"",
+        "Dob":"",
+        "gender":"",
+        "role":""
+    },
+    "0":{
+        "name" : "TranPhuongNam",
+        "Dob" : "05/05/2002",
+        "gender" : "male",
+        "role" : "admin"
+    },
+    "246":{
+        "name" : "TranVanA",
+        "Dob" : "05/05/2002",
+        "gender" : "female",
+        "role" : "admin"
+    }
+    
+}
