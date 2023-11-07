@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 from minio import Minio
+import json
 
 import os
 import sys
@@ -52,6 +53,16 @@ class Minio_Client():
                 bucket, name_file 
             )
         return url
+    
+    def get_file_json(self, bucket=config.BUCKET, name_file = 'data.json'):
+        try:
+            self.minio_client.fget_object(bucket_name=bucket, 
+                                        object_name =name_file , file_path= os.path.join('tmp', name_file))
+            f = open(os.path.join('tmp', name_file))
+            data = json.load(f)
+            return data
+        except :
+            return None
     
 if __name__ == "__main__":  
     minio_clinet = Minio_Client()
