@@ -64,12 +64,19 @@ def read_img(path):
 
 
 
-def date_to_timestamp(day, month, year, hour=0, minute=0, second=0):
+def date_to_timestamp(day=0, month=0, year=0, hour=0, minute=0, second=0):
+    # Get the local timezone
+    local_tz = pytz.timezone('Asia/Ho_Chi_Minh')
+
+    if(year == 0 ):
+        now = datetime.now()
+        day = now.day
+        month = now.month
+        year = now.year
+
     # Create a naive datetime object with the given date and time set to 0 hour 0 minute 0 second
     naive_date = datetime(year, month, day, hour, minute, second)
     
-    # Get the local timezone
-    local_tz = pytz.timezone('Asia/Ho_Chi_Minh')
     
     # Localize the naive datetime to the local timezone
     local_date = local_tz.localize(naive_date, is_dst=None)
@@ -120,6 +127,8 @@ def datenow2timestamp():
     timestamp = int(utc_date.timestamp())
     
     return timestamp
+
+
 
 if __name__ =="__main__":
     # img = read_img()
