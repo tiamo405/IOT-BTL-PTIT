@@ -8,6 +8,7 @@ root = os.getcwd()
 pwd = os.path.dirname(os.path.realpath("."))
 sys.path.insert(0, root)
 import config 
+from environs import Env
 
 # from src import TRITON_HOST, TRITON_PORT
 
@@ -156,12 +157,15 @@ class FaceEmbedding:
         return embs, scores
 
 if __name__=="__main__":
+    env = Env()
+    env.read_env()
 
-    # TRITON_HOST = os.environ.get('TRITON_HOST')
-    # TRITON_POST = os.environ.get('TRITON_POST')
+    TRITON_HOST = os.getenv('TRITON_HOST')
+    TRITON_POST = os.environ.get('TRITON_POST')
+    print(TRITON_HOST)
 
-    TRITON_HOST = config.TRITON_HOST
-    TRITON_POST = config.TRITON_PORT
+    # TRITON_HOST = config.TRITON_HOST
+    # TRITON_POST = config.TRITON_PORT
     embs = []
     Yujii_A = FaceEmbedding(TRITON_HOST= TRITON_HOST, TRITON_PORT= TRITON_POST)
     # for file in os.listdir('data-face'):

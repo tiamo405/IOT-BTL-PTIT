@@ -42,4 +42,5 @@ def push_data(data_id_person, image):
 
     cv2.imwrite(os.path.join('tmp', str(timeVisit)+'.jpg'), image)
     minio.upload_file(file= str(timeVisit)+'.jpg')
-    
+    os.remove(os.path.join('tmp', str(timeVisit)+'.jpg'))
+

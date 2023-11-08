@@ -162,3 +162,4 @@ cython_debug/
 data-face/
 *.jpg
 *.npy
+config.py
