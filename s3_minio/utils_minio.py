@@ -1,5 +1,6 @@
 import json
 import numpy as np
+import cv2
 import os
 import sys
 root = os.getcwd()
@@ -17,15 +18,18 @@ def find_metadata(id_person):
     metadata = {
         "customerID":str(id_person),
         "name": data["name"],
-        "timeVisit": datenow2timestamp(),
-        "timestamp":date_to_timestamp()
     }
     print(metadata)
     return metadata
 
-def push_data(data_id_person):
+def push_data(data_id_person, image):
     data = minio.get_file_json(name_file= "data.json")
-    timeVisit = data_id_person["timeVisit"]
+    timeVisit = datenow2timestamp()
+    timestamp = date_to_timestamp()
+
+    data_id_person[str(timeVisit)] = timeVisit
+    data_id_person[str(timestamp)] = timestamp
+
     data[str(timeVisit)] = data_id_person
 
     # Serializing json
@@ -35,3 +39,7 @@ def push_data(data_id_person):
         outfile.write(json_object)
 
     minio.upload_file(file = 'data.json')
+
+    cv2.imwrite(os.path.join('tmp', str(timeVisit)+'.jpg'), image)
+    minio.upload_file(file= str(timeVisit)+'.jpg')
+    
