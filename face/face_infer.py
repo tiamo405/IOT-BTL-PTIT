@@ -44,10 +44,10 @@ def _augment(face_img, total=10):
 def _preprocess(face, net_inshape):
         face = cv2.resize(face, net_inshape[::-1])  # (h, w) to (w, h)
         
-        face = (face.astype(np.float32) - 127.5) / 127.5
+        face = (face.astype(np.float32) - 127.5) / 127.5 # ta đưa giá trị pixel về khoảng từ -1 đến 1. Chuẩn hóa giá trị pixel giúp mô hình học sâu học được hiệu quả hơn.
 
-        face = np.transpose(face, (2, 0, 1))
-        face = np.expand_dims(face, 0).astype(np.float32)
+        face = np.transpose(face, (2, 0, 1)) # W, H, C -> C, W, H
+        face = np.expand_dims(face, 0).astype(np.float32) # 1, C, W, H
         return face
 
 class FaceEmbedding:

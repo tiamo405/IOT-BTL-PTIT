@@ -54,13 +54,14 @@ while cap.isOpened():
     box, dst, confidence = bbox[0], dsts[0], confidences[0]
 
     x_top, y_top, x_bottom, y_bottom = box
-    frame = cv2.rectangle(frame, (x_top, y_top), (x_bottom, y_bottom),
-                          (0,255,0), 2)
+    
     if confidence < THRESHOLD_FACE_DETECT: 
         continue
 
     face_align = detector_face.align_face(frame, dst)
-
+    
+    frame = cv2.rectangle(frame, (x_top, y_top), (x_bottom, y_bottom),
+                          (0,255,0), 2)
     emb, score = detector_face.get_emb(frame, dst)
     if score < THRESHOLD_FACE_EMB :
         continue
@@ -73,11 +74,12 @@ while cap.isOpened():
     api_mocua.mocua()
 
     data_id_person = utils_minio.find_metadata(id_person)
+
     print(id_person)
     
     # day du lieu khi co nguoi moi den
-    utils_minio.push_data(data_id_person)
-    
+    utils_minio.push_data(data_id_person, face_align)
+
     cv2.imwrite('debug.jpg', frame)
     break
     # # Hiển thị frame với kết quả detect
@@ -90,3 +92,4 @@ while cap.isOpened():
 # Giải phóng các tài nguyên và đóng cửa sổ video
 cap.release()
 cv2.destroyAllWindows()
+
