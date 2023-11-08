@@ -1,6 +1,6 @@
 import os
 # TRITON_HOST="192.168.100.89"
-TRITON_HOST = '103.130.57.57'
+
 TRITON_PORT="8001"
 
 # ENDPOINT = os.environ.get('ENDPOINT')
