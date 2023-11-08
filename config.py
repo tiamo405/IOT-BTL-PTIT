@@ -1,7 +1,11 @@
 import os
-# TRITON_HOST="192.168.100.89"
+from environs import Env
+env = Env()
+env.read_env()
 
-TRITON_PORT="8001"
+
+TRITON_HOST = os.getenv("TRITON_HOST")
+TRITON_PORT = os.getenv("TRITON_PORT")
 
 # ENDPOINT = os.environ.get('ENDPOINT')
 # ACCESS_KEY = os.environ.get('ACCESS_KEY')
