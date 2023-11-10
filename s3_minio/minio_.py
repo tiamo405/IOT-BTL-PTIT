@@ -24,7 +24,7 @@ class Minio_Client():
             secure= self.secure,# True nếu sử dụng kết nối an toàn (HTTPS)
         )
         
-    def get_embs(self, bucket=config.BUCKET, name_file = 'embs.npy'):
+    def get_embs(self, bucket=config.BUCKET, name_file = 'family/embs.npy'):
         try:
             self.minio_client.fget_object(bucket_name=bucket, 
                                         object_name =name_file , file_path= os.path.join('tmp', name_file))
