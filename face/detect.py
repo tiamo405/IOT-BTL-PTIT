@@ -61,7 +61,7 @@ class Face_Detect():
     def get_emb(self, cv_image, dst) :
         face_align = self.align_face(cv_image, dst)
         emb, score = self.face_embedding.get_emb(face_align)
-        return emb,score
+        return emb,score[0][0]
 
 
 if __name__ == "__main__":  

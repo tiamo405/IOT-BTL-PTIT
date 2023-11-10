@@ -160,6 +160,7 @@ if __name__=="__main__":
 
 
     TRITON_HOST = config.TRITON_HOST
+    # TRITON_HOST = "192.168.100.89"
     TRITON_PORT = config.TRITON_PORT
 
     print(TRITON_HOST, TRITON_PORT) 
