@@ -13,34 +13,35 @@ from s3_minio.minio_ import Minio_Client
 minio = Minio_Client()
 
 def find_metadata(id_person):
-    customer = minio.get_file_json(name_file= "customer.json")
-    data = customer[str(id_person)]
+    family_data = minio.get_file_json(name_file= "family/family.json", bucket='iot')
+    data = family_data[str(id_person)]
     metadata = {
         "customerID":str(id_person),
         "name": data["name"],
     }
-    print(metadata)
     return metadata
 
-def push_data(data_id_person, image):
-    data = minio.get_file_json(name_file= "data.json")
-    timeVisit = datenow2timestamp()
-    timestamp = date_to_timestamp()
+def push_data(data_id_person, image, time):
+    data = minio.get_file_json(name_file= "data/data.json", bucket='iot')
+    timeVisit = time["timeVisit"]
+    timestamp = time["timestamp"]
 
-    data_id_person[str(timeVisit)] = timeVisit
-    data_id_person[str(timestamp)] = timestamp
+    data_id_person["timeVisit"] = timeVisit
+    data_id_person["timestamp"] = timestamp
 
     data[str(timeVisit)] = data_id_person
 
     # Serializing json
     json_object = json.dumps(data, indent=4)
     # Writing to sample.json
-    with open("tmp/data.json", "w") as outfile:
+    with open("tmp/data/data.json", "w") as outfile:
         outfile.write(json_object)
 
-    minio.upload_file(file = 'data.json')
+    minio.upload_file(file = 'data/data.json', bucket='iot')
 
-    cv2.imwrite(os.path.join('tmp', str(timeVisit)+'.jpg'), image)
-    minio.upload_file(file= str(timeVisit)+'.jpg')
-    os.remove(os.path.join('tmp', str(timeVisit)+'.jpg'))
+    cv2.imwrite(os.path.join('tmp','data' , str(timeVisit)+'.jpg'), image)
+    minio.upload_file(file= 'data/'+str(timeVisit)+'.jpg', bucket='iot')
+    os.remove(os.path.join('tmp', 'data',str(timeVisit)+'.jpg'))
+
+    # bot_tele.send(data_id_person)
 
