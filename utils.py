@@ -129,6 +129,22 @@ def datenow2timestamp():
     return timestamp
 
 
+def draw_data2frame(frame, box, data) :
+    x_top, y_top, x_bottom, y_bottom = box
+    # date = timestamp_to_date(data["timeVisit"])
+    name_customer = data["name"]
+    customerID = data["customerID"]
+
+    color_ = (0,255,0) if customerID != "-1" else (255,0,0)
+    frame = cv2.rectangle(frame, (x_top, y_top), (x_bottom, y_bottom),
+                            color_, 2)
+    
+    # frame = cv2.putText(frame, text=date, org=(100,100), fontFace= cv2.FONT_HERSHEY_SIMPLEX,fontScale= 3,
+    #                     color=(0,0,255), thickness=3, lineType= cv2.LINE_AA)
+    frame = cv2.putText(frame, text=name_customer, org=(x_top, y_top+100), fontFace= cv2.FONT_HERSHEY_SIMPLEX,fontScale= 3,
+                        color=color_, thickness=3, lineType= cv2.LINE_AA)
+    return frame
+
 
 if __name__ =="__main__":
     # img = read_img()
