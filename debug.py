@@ -19,3 +19,4 @@ with open('tmp/data.json', 'r') as json_file:
 
 # Kiểm tra xem dữ liệu đã được đọc đúng chưa
 print(loaded_data)
+print(1)
