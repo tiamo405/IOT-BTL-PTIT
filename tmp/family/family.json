@@ -8,13 +8,13 @@
     "0": {
         "name": "TranPhuongNam",
         "Dob": "05/05/2002",
-        "gender": "male",
+        "gender": "Male",
         "role": "admin"
     },
     "246": {
         "name": "TranVanA",
         "Dob": "05/05/2002",
-        "gender": "female",
+        "gender": "Female",
         "role": "family"
     },
     "2": {
