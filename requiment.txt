@@ -3,3 +3,4 @@ skimage
 sklearn
 tritonclient
 grpc
+opencv-python
