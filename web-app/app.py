@@ -1,10 +1,15 @@
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
-import os
+import sys, os
+cwd = os.getcwd()
+sys.path.append(os.path.abspath(os.path.dirname(cwd)))
+
+# import file code
+# from api.api import add_family
 
 app = Flask(__name__)
-
+app.secret_key = 'your_secret_key'
 # Thư mục để lưu trữ ảnh
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -33,30 +38,31 @@ def upload():
 
     if file.filename == '':
         return redirect(request.url)
-    # kiểm tra có phải refesh không. nếu == True là không, xử lí yêu cầu
-    is_refresh = request.form.get('is_refresh', 'false')
-    print(is_refresh)
+   
     
-    if file and allowed_file(file.filename) and is_refresh == 'true':
+    if file and allowed_file(file.filename):
         # Lưu trữ tệp ảnh
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
         # Nhận dữ liệu khác từ form
         name = request.form['name']
-        age = request.form['age']
+        dob = request.form['dob']
         gender = request.form['gender']
 
         # Thực hiện xử lý với dữ liệu và ảnh ở đây
+
         # Ví dụ: in thông tin ra console
-        print(f"Name: {name}, Age: {age}, Gender: {gender}")
+        print(f"Name: {name}, DoB: {dob}, Gender: {gender}")
         print(f"Image saved as: {filename}")
 
         # Trả về kết quả thành công
-        return render_template('add_family.html', result={'result': 'success', 'message': 'File uploaded successfully'})
-
+        flash('File uploaded successfully', 'success')
+        return redirect(url_for('add_family'))
+        
     # Trả về kết quả thất bại với thông báo lỗi
-    return render_template('add_family.html', result={'result': 'failed', 'error': 'Invalid file format'})
+    flash('Invalid file format', 'error')
+    return redirect(url_for('add_family.html'))
 
 if __name__ == '__main__':
     app.run(debug=True)

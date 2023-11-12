@@ -4,26 +4,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Upload</title>
+    <title>Add Family</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            color: #333;
+            margin-top: 16px;
+        }
+
+        .success {
+            color: #4caf50;
+        }
+
+        .error {
+            color: #f44336;
+        }
+    </style>
+    <script>
+        function formatDateString(input) {
+            // Kiểm tra xem chuỗi có đúng định dạng hay không (10112012)
+            if (/^\d{8}$/.test(input)) {
+                // Tách chuỗi thành các phần ngày, tháng, năm
+                var day = input.substring(0, 2);
+                var month = input.substring(2, 4);
+                var year = input.substring(4, 8);
+
+                // Tạo chuỗi ngày tháng năm mới
+                var formattedDate = day + '/' + month + '/' + year;
+
+                // Gán giá trị mới vào ô input
+                document.getElementById('dob').value = formattedDate;
+            }
+        }
+    </script>
 </head>
 
 <body>
-    <h1>Image Upload</h1>
+    <h1>Add Family</h1>
 
-    {% if result %}
-    {% if result.result == 'success' %}
-    <p style="color: green;">{{ result.message }}</p>
-    {% else %}
-    <p style="color: red;">{{ result.error }}</p>
-    {% endif %}
-    {% endif %}
-    <input type="hidden" name="is_refresh" value="false">
     <form action="/upload_family" method="post" enctype="multipart/form-data">
-        <label for="name">Name:</label>
+        <label for="name">Family Name:</label>
         <input type="text" id="name" name="name" required>
 
-        <label for="age">Age:</label>
-        <input type="text" id="age" name="age" required>
+        <label for="dob">Date of Birth:</label>
+        <input type="text" id="dob" name="dob" oninput="formatDateString(this.value)" required>
+
 
         <label for="gender">Gender:</label>
         <select id="gender" name="gender" required>
@@ -31,13 +108,22 @@
             <option value="female">Female</option>
         </select>
 
-        <label for="file">Image:</label>
+        <label for="file">Family Photo:</label>
         <input type="file" id="file" name="file" accept=".png, .jpg, .jpeg, .gif" required>
 
-        <input type="submit" value="Upload">
+        
+        <input type="submit" value="Add Family">
     </form>
-    <a href="/"><button>Trang chu</button></a>
-    
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+        {% if category == 'success' %}
+            <p class="success">{{ message }}</p>
+        {% elif category == 'error' %}
+            <p class="error">{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+{% endwith %}
 </body>
 
 </html>
