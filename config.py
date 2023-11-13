@@ -3,6 +3,7 @@ from environs import Env
 env = Env()
 env.read_env()
 
+DIR_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 TRITON_HOST = os.getenv("TRITON_HOST")
 TRITON_PORT = os.getenv("TRITON_PORT")
