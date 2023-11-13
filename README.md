@@ -9,6 +9,10 @@
 # Web-app
 - Feature add_family
     + Start    
+    + Run 
+    ```sh
+    python web-app/app.py
+    ```
 - View history 
     + None
 

@@ -1,12 +1,13 @@
-
 from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
 import sys, os
+
+
 cwd = os.getcwd()
 sys.path.append(os.path.abspath(os.path.dirname(cwd)))
-
+sys.path.insert(0, cwd)
 # import file code
-# from api.api import add_family
+from api.api import api_add_family
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -16,6 +17,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Phần mở rộng tệp cho phép
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+DIR_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -43,7 +46,7 @@ def upload():
     if file and allowed_file(file.filename):
         # Lưu trữ tệp ảnh
         filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        file.save(os.path.join(DIR_ROOT, app.config['UPLOAD_FOLDER'], filename))
 
         # Nhận dữ liệu khác từ form
         name = request.form['name']
@@ -56,8 +59,13 @@ def upload():
         print(f"Name: {name}, DoB: {dob}, Gender: {gender}")
         print(f"Image saved as: {filename}")
 
+        # bat dau them vao data base
+        error = api_add_family(image= os.path.join(DIR_ROOT,app.config['UPLOAD_FOLDER'], filename), name= name, gender= gender, dob= dob)
         # Trả về kết quả thành công
-        flash('File uploaded successfully', 'success')
+        if error == "File uploaded successfully" :
+            flash(error, 'success')
+        else :
+            flash(error, 'error')
         return redirect(url_for('add_family'))
         
     # Trả về kết quả thất bại với thông báo lỗi
