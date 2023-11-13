@@ -27,9 +27,9 @@ class Minio_Client():
     def get_embs(self, bucket=config.BUCKET, name_file = 'family/embs.npy'):
         try:
             self.minio_client.fget_object(bucket_name=bucket, 
-                                        object_name =name_file , file_path= os.path.join('tmp', name_file))
+                                        object_name =name_file , file_path= os.path.join(config.DIR_ROOT, 'tmp', name_file))
             
-            embs = np.load(os.path.join('tmp', name_file))
+            embs = np.load(os.path.join(config.DIR_ROOT, 'tmp', name_file))
             embs = np.array(embs).astype('float32')
             return embs
         except :
@@ -44,7 +44,7 @@ class Minio_Client():
         #         file = str(timestape)+ '.json'
 
         self.minio_client.fput_object(
-            bucket_name= bucket, object_name = file, file_path= os.path.join('tmp', file) 
+            bucket_name= bucket, object_name = file, file_path= os.path.join(config.DIR_ROOT,'tmp', file) 
         )
 
     def get_url(self, bucket, name_file):
@@ -57,8 +57,8 @@ class Minio_Client():
     def get_file_json(self, bucket=config.BUCKET, name_file = 'data.json'):
         try:
             self.minio_client.fget_object(bucket_name=bucket, 
-                                        object_name =name_file , file_path= os.path.join('tmp', name_file))
-            f = open(os.path.join('tmp', name_file))
+                                        object_name =name_file , file_path= os.path.join(config.DIR_ROOT,'tmp', name_file))
+            f = open(os.path.join(config.DIR_ROOT, 'tmp', name_file))
             data = json.load(f)
             return data
         except :
