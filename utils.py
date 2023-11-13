@@ -93,7 +93,7 @@ def timestamp_to_date(timestamp):
     tz = pytz.timezone('Asia/Ho_Chi_Minh')  # Chọn múi giờ Asia/Ho_Chi_Minh
     utc_time = datetime.utcfromtimestamp(timestamp).replace(tzinfo=pytz.utc)  # Chuyển timestamp thành UTC
     local_time = utc_time.astimezone(tz)  # Chuyển đổi sang múi giờ Asia/Ho_Chi_Minh
-    formatted_time = local_time.strftime('%H:%M:%S')  # Định dạng ngày tháng năm giờ phút
+    formatted_time = local_time.strftime('%Y-%m-%d %H:%M:%S')  # Định dạng ngày tháng năm giờ phút
     return formatted_time
 
 def check_timeVisit(day, month, year, timeVisit, timeStart, timeEnd ) :
