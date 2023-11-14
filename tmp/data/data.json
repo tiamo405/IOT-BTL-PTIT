@@ -64,5 +64,11 @@
         "name": "TranVanA",
         "timeVisit": 1699593296,
         "timestamp": 1699549200
+    },
+    "1699951826": {
+        "customerID": "-1",
+        "name": "",
+        "timeVisit": 1699951826,
+        "timestamp": 1699894800
     }
 }
