@@ -3,10 +3,20 @@ import faiss
 import numpy as np
 from PIL import Image
 from s3_minio.minio_ import Minio_Client
+import config
+
+
+minio_client = Minio_Client()
+
 
 def faiss_search(emb, threshold= 0.5 , device= 'cpu', k = 1, nprobe = 1, train = False):
-  minio_client = Minio_Client()
-  embs = minio_client.get_embs(bucket= 'iot', name_file='family/embs.npy')
+  
+
+  if os.path.exists(os.path.join(config.DIR_ROOT, "tmp/family/embs.npy")):
+    embs = np.load(os.path.join(config.DIR_ROOT, "tmp/family/embs.npy"))
+  else:
+    embs = minio_client.get_embs(bucket= 'iot', name_file='family/embs.npy')
+  
   dim = embs.shape[1]
   if device == 'cpu' :
     model_faiss = faiss.IndexFlatL2(dim)
@@ -31,7 +41,6 @@ def faiss_search(emb, threshold= 0.5 , device= 'cpu', k = 1, nprobe = 1, train =
   else :
     return -1
 
-# def index2person(index):
 
 
 if __name__ == "__main__":  
