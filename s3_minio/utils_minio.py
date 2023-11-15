@@ -12,9 +12,9 @@ from s3_minio.minio_ import Minio_Client
 # Khởi tạo Minio Clinet
 minio = Minio_Client()
 
-def find_metadata(id_person):
-    if os.path.exists(os.path.join(config.DIR_ROOT, "tmp/family/embs.npy")):
-        f = open(os.path.join(config.DIR_ROOT, "tmp/family/embs.npy"))
+def find_metadata(id_person, time):
+    if os.path.exists(os.path.join(config.DIR_ROOT, "tmp/family/family.json")):
+        f = open(os.path.join(config.DIR_ROOT, "tmp/family/family.json"))
         family_data = json.load(f)
     else:
         family_data = minio.get_file_json(name_file= "family/family.json", bucket='iot')
@@ -22,10 +22,12 @@ def find_metadata(id_person):
     metadata = {
         "customerID":str(id_person),
         "name": data["name"],
+        "timeVisit" : time["timeVisit"],
+        "timestamp" : time["timestamp"]
     }
     return metadata
 
-def push_data(data_id_person, image, time):
+def push_data(data_id_person, image):
 
     if os.path.exists(os.path.join(config.DIR_ROOT, "tmp/data/data.json")) :
         f = open(os.path.join(config.DIR_ROOT, "tmp/data/data.json"))
@@ -33,12 +35,7 @@ def push_data(data_id_person, image, time):
     else:
         data = minio.get_file_json(name_file= "data/data.json", bucket='iot')
     
-    timeVisit = time["timeVisit"]
-    timestamp = time["timestamp"]
-
-    data_id_person["timeVisit"] = timeVisit
-    data_id_person["timestamp"] = timestamp
-
+    timeVisit = data_id_person["timeVisit"]
     data[str(timeVisit)] = data_id_person
 
     # Serializing json
