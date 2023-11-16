@@ -10,7 +10,7 @@ cwd = os.getcwd()
 sys.path.append(os.path.abspath(os.path.dirname(cwd)))
 sys.path.insert(0, cwd)
 import config
-from bot_tele_.utils import horoscope, time_sleeps
+from bot_tele.utils import horoscope, time_sleeps
 from get_api.get_answer_simsimi import get_answer_simsimi
 from get_api.xsmb import xsmb
 from logs.logs import setup_logger 

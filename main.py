@@ -31,7 +31,7 @@ minio = Minio_Client()
 from sensor import api
 
 # telegrame
-from bot_tele_.bot_noti import MyBot
+from bot_tele.bot_noti import MyBot
 BOT_TOKEN = config.BOT_TOKEN
 mybot = MyBot(token= BOT_TOKEN)
 
