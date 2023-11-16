@@ -68,4 +68,6 @@ if __name__ == "__main__":
     minio_clinet = Minio_Client()
     # embs = minio_clinet.get_embs(bucket= '84soft', name_file='emb.npy')
     # print(embs)
-    minio_clinet.upload_file(file= 'debug.jpg')
+    # minio_clinet.upload_file(file= 'debug.jpg')
+    url = minio_clinet.get_url(bucket= 'iot', name_file='data/1699593296.jpg')
+    print(url)
