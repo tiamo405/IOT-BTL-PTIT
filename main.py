@@ -123,12 +123,12 @@ def main():
             time_start_open = frame_count
             api.mocua()
 
+        frame = utils.draw_data2frame(frame, box, data_id_person)
+        cv2.imwrite('debug.jpg', frame)
+
         mybot.send_notification(text = data_id_person["name"]+ " "+ time["time"],
             path_image= os.path.join(config.DIR_ROOT, "face_align.jpg"))
 
-        frame = utils.draw_data2frame(frame, box, data_id_person)
-
-        cv2.imwrite('debug.jpg', frame)
         video_writer.write(frame)
         # break
         # # Hiển thị frame với kết quả detect
@@ -143,7 +143,7 @@ def main():
     cap.release()
     cv2.destroyAllWindows()
     
-    # mybot.start_polling() 
+    mybot.start_polling() 
 
 if __name__ == "__main__":  
     main()
