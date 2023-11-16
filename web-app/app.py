@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_paginate import Pagination, get_page_parameter
 from werkzeug.utils import secure_filename
-import sys, os
+import sys, os, json
 
 
 cwd = os.getcwd()
@@ -8,9 +9,19 @@ sys.path.append(os.path.abspath(os.path.dirname(cwd)))
 sys.path.insert(0, cwd)
 # import file code
 from api.api import api_add_family
+import config
+import utils_time
+
+# minio
+from s3_minio.minio_ import Minio_Client
+from s3_minio import utils_minio
+# Khởi tạo Minio Clinet
+minio = Minio_Client()
+
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+
+# app.secret_key = 'your_secret_key'
 # Thư mục để lưu trữ ảnh
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -25,7 +36,23 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if os.path.exists(os.path.join(config.DIR_ROOT, "tmp/data/data.json")) :
+        f = open(os.path.join(config.DIR_ROOT, "tmp/data/data.json"))
+        data_json = json.load(f)
+    else:
+        data_json = minio.get_file_json(name_file= "data/data.json", bucket='iot')
+
+    data = []
+    for key in data_json:
+        item = data_json[str(key)]
+        one_data = {
+            "date" : utils_time.timestamp_to_date(item["timeVisit"]),
+            "name" : item["name"],
+            "image" : minio.get_url(bucket='iot', name_file= os.path.join('data', str(item["timeVisit"])+'.jpg'))
+        }
+        data.append(one_data)
+    data.reverse()
+    return render_template('index.html', data=data)
     # return 'Hello'
 
 @app.route('/add_family')

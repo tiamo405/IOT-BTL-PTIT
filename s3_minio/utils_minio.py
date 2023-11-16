@@ -41,14 +41,14 @@ def push_data(data_id_person, image):
     # Serializing json
     json_object = json.dumps(data, indent=4)
     # Writing to sample.json
-    with open("tmp/data/data.json", "w") as outfile:
+    with open(os.path.join(config.DIR_ROOT, "tmp/data/data.json"), "w") as outfile:
         outfile.write(json_object)
 
     cv2.imwrite(os.path.join('tmp','data' , str(timeVisit)+'.jpg'), image)
     
     minio.upload_file(file = 'data/data.json', bucket='iot')
     minio.upload_file(file= 'data/'+str(timeVisit)+'.jpg', bucket='iot')
-    os.remove(os.path.join('tmp', 'data',str(timeVisit)+'.jpg'))
+    # os.remove(os.path.join(config.DIR_ROOT,'tmp', 'data',str(timeVisit)+'.jpg'))
 
     # bot_tele.send(data_id_person)
 

@@ -1,64 +1,4 @@
 {
-    "1699332850": {
-        "customerID": "0",
-        "name": "TranPhuongNam",
-        "timeVisit": 1699332850,
-        "timestamp": 1696950763
-    },
-    "1699332851": {
-        "customerID": "-1",
-        "name": "",
-        "timeVisit": 1699332851,
-        "timestamp": 1696950763
-    },
-    "1699332852": {
-        "customerID": "246",
-        "name": "TranVanA",
-        "timeVisit": 1699332852,
-        "timestamp": 1696950763
-    },
-    "1699348200": {
-        "customerID": "246",
-        "name": "TranVanA",
-        "timeVisit": 1699348200,
-        "timestamp": 1699290000
-    },
-    "1699434204": {
-        "customerID": "246",
-        "name": "TranVanA",
-        "1699434204": 1699434204,
-        "1699376400": 1699376400
-    },
-    "1699541547": {
-        "customerID": "246",
-        "name": "TranVanA",
-        "1699541547": 1699541547,
-        "1699462800": 1699462800
-    },
-    "1699541697": {
-        "customerID": "246",
-        "name": "TranVanA",
-        "timeVisit": 1699541697,
-        "timestamp": 1699462800
-    },
-    "1699541768": {
-        "customerID": "246",
-        "name": "TranVanA",
-        "timeVisit": 1699541768,
-        "timestamp": 1699462800
-    },
-    "1699541827": {
-        "customerID": "246",
-        "name": "TranVanA",
-        "timeVisit": 1699541827,
-        "timestamp": 1699462800
-    },
-    "1699542137": {
-        "customerID": "246",
-        "name": "TranVanA",
-        "timeVisit": 1699542137,
-        "timestamp": 1699462800
-    },
     "1699593296": {
         "customerID": "246",
         "name": "TranVanA",
@@ -67,13 +7,13 @@
     },
     "1699951826": {
         "customerID": "-1",
-        "name": "",
+        "name": "Nguoi La",
         "timeVisit": 1699951826,
         "timestamp": 1699894800
     },
     "1699973444": {
         "customerID": "-1",
-        "name": "",
+        "name": "Nguoi La",
         "timeVisit": 1699973444,
         "timestamp": 1699894800
     },
@@ -418,5 +358,89 @@
         "name": "Nguoi La",
         "timeVisit": 1699982158,
         "timestamp": 1699981200
+    },
+    "1700124108": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700124108,
+        "timestamp": 1700067600
+    },
+    "1700125583": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125583,
+        "timestamp": 1700067600
+    },
+    "1700125630": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125630,
+        "timestamp": 1700067600
+    },
+    "1700125742": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125742,
+        "timestamp": 1700067600
+    },
+    "1700125766": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125766,
+        "timestamp": 1700067600
+    },
+    "1700125769": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125769,
+        "timestamp": 1700067600
+    },
+    "1700125771": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125771,
+        "timestamp": 1700067600
+    },
+    "1700125776": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125776,
+        "timestamp": 1700067600
+    },
+    "1700125788": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125788,
+        "timestamp": 1700067600
+    },
+    "1700125790": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125790,
+        "timestamp": 1700067600
+    },
+    "1700125796": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125796,
+        "timestamp": 1700067600
+    },
+    "1700125799": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125799,
+        "timestamp": 1700067600
+    },
+    "1700125802": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125802,
+        "timestamp": 1700067600
+    },
+    "1700125804": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700125804,
+        "timestamp": 1700067600
     }
 }
