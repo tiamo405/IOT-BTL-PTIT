@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_paginate import Pagination, get_page_parameter
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.utils import secure_filename
 import sys, os, json
 
@@ -8,7 +8,7 @@ cwd = os.getcwd()
 sys.path.append(os.path.abspath(os.path.dirname(cwd)))
 sys.path.insert(0, cwd)
 # import file code
-from api.api import api_add_family
+# from api.api import api_add_family
 import config
 import utils_time
 
@@ -18,10 +18,10 @@ from s3_minio import utils_minio
 # Khởi tạo Minio Clinet
 minio = Minio_Client()
 
+# Thư mục để lưu trữ ảnh
+UPLOAD_FOLDER = 'uploads'
 
 app = Flask(__name__)
-
-# app.secret_key = 'your_secret_key'
 # Thư mục để lưu trữ ảnh
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -30,11 +30,52 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 DIR_ROOT = os.path.dirname(os.path.abspath(__file__))
+app.secret_key = 'your_secret_key'  # Đặt secret key là một chuỗi bí mật và duy nhất
+
+# Config Flask-Login
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+
+# Mock User Database
+class User(UserMixin):
+    def __init__(self, user_id, username, password):
+        self.id = user_id
+        self.username = username
+        self.password = password
+
+users = {
+    '1': User('1', '1', '1')
+}
+
+# Flask-Login callback to load a user
+@login_manager.user_loader
+def load_user(user_id):
+    return users.get(user_id)
+
+# Routes
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        user = next((u for u in users.values() if u.username == username and u.password == password), None)
+
+        if user:
+            login_user(user)
+            flash('Login successful!', 'success')
+            return redirect(url_for('index'))
+        else:
+            flash('Login failed. Invalid username or password.', 'error')
+
+    return render_template('login.html')
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
+@login_required
 def index():
     if os.path.exists(os.path.join(config.DIR_ROOT, "tmp/data/data.json")) :
         f = open(os.path.join(config.DIR_ROOT, "tmp/data/data.json"))
@@ -56,6 +97,7 @@ def index():
     # return 'Hello'
 
 @app.route('/add_family')
+@login_required
 def add_family():
     return render_template('add_family.html')
 
@@ -87,7 +129,8 @@ def upload():
         print(f"Image saved as: {filename}")
 
         # bat dau them vao data base
-        error = api_add_family(image= os.path.join(DIR_ROOT,app.config['UPLOAD_FOLDER'], filename), name= name, gender= gender, dob= dob)
+        # error = api_add_family(image= os.path.join(DIR_ROOT,app.config['UPLOAD_FOLDER'], filename), name= name, gender= gender, dob= dob)
+        error = "debug"
         # Trả về kết quả thành công
         if error == "File uploaded successfully" :
             flash(error, 'success')
@@ -98,6 +141,14 @@ def upload():
     # Trả về kết quả thất bại với thông báo lỗi
     flash('Invalid file format', 'error')
     return redirect(url_for('add_family.html'))
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('Logout successful!', 'success')
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True)

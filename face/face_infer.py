@@ -173,11 +173,7 @@ if __name__=="__main__":
     #     emb, score = Yujii_A.get_emb(image)
     #     embs.append(emb)
 
-    image = cv2.imread('0.jpg')
+    image = cv2.imread('face_align.jpg')
     emb, score = Yujii_A.get_emb(image)
     print(score)
-    embs.append(emb)
-    embs = np.vstack(embs)
-    np.save('tmp/embs.npy', emb)
-    emb = np.load('tmp/embs.npy')
     print(emb.shape)

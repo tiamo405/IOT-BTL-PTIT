@@ -4,3 +4,10 @@ sklearn
 tritonclient
 grpc
 opencv-python
+requests
+pytz
+minio
+scikit-learn
+faiss-cpu
+mtcnn
+tensorflow
