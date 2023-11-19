@@ -50,5 +50,5 @@ def push_data(data_id_person, image):
     minio.upload_file(file= 'data/'+str(timeVisit)+'.jpg', bucket='iot')
     # os.remove(os.path.join(config.DIR_ROOT,'tmp', 'data',str(timeVisit)+'.jpg'))
 
-    # bot_tele.send(data_id_person)
+
 

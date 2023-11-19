@@ -1,446 +1,80 @@
 {
-    "1699593296": {
-        "customerID": "246",
-        "name": "TranVanA",
-        "timeVisit": 1699593296,
-        "timestamp": 1699549200
-    },
-    "1699951826": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699951826,
-        "timestamp": 1699894800
-    },
-    "1699973444": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699973444,
-        "timestamp": 1699894800
-    },
-    "1699974533": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699974533,
-        "timestamp": 1699894800
-    },
-    "1699974552": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699974552,
-        "timestamp": 1699894800
-    },
-    "1699976577": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699976577,
-        "timestamp": 1699894800
-    },
-    "1699976597": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699976597,
-        "timestamp": 1699894800
-    },
-    "1699978293": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699978293,
-        "timestamp": 1699894800
-    },
-    "1699978311": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699978311,
-        "timestamp": 1699894800
-    },
-    "1699978313": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699978313,
-        "timestamp": 1699894800
-    },
-    "1699978316": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699978316,
-        "timestamp": 1699894800
-    },
-    "1699979869": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699979869,
-        "timestamp": 1699894800
-    },
-    "1699979887": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699979887,
-        "timestamp": 1699894800
-    },
-    "1699979889": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699979889,
-        "timestamp": 1699894800
-    },
-    "1699979891": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699979891,
-        "timestamp": 1699894800
-    },
-    "1699979895": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699979895,
-        "timestamp": 1699894800
-    },
-    "1699979897": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699979897,
-        "timestamp": 1699894800
-    },
-    "1699979900": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699979900,
-        "timestamp": 1699894800
-    },
-    "1699980053": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980053,
-        "timestamp": 1699894800
-    },
-    "1699980142": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980142,
-        "timestamp": 1699894800
-    },
-    "1699980160": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980160,
-        "timestamp": 1699894800
-    },
-    "1699980162": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980162,
-        "timestamp": 1699894800
-    },
-    "1699980164": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980164,
-        "timestamp": 1699894800
-    },
-    "1699980168": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980168,
-        "timestamp": 1699894800
-    },
-    "1699980171": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980171,
-        "timestamp": 1699894800
-    },
-    "1699980174": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980174,
-        "timestamp": 1699894800
-    },
-    "1699980176": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980176,
-        "timestamp": 1699894800
-    },
-    "1699980178": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980178,
-        "timestamp": 1699894800
-    },
-    "1699980181": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980181,
-        "timestamp": 1699894800
-    },
-    "1699980183": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980183,
-        "timestamp": 1699894800
-    },
-    "1699980184": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980184,
-        "timestamp": 1699894800
-    },
-    "1699980188": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980188,
-        "timestamp": 1699894800
-    },
-    "1699980191": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980191,
-        "timestamp": 1699894800
-    },
-    "1699980197": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980197,
-        "timestamp": 1699894800
-    },
-    "1699980203": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980203,
-        "timestamp": 1699894800
-    },
-    "1699980206": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980206,
-        "timestamp": 1699894800
-    },
-    "1699980210": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980210,
-        "timestamp": 1699894800
-    },
-    "1699980213": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980213,
-        "timestamp": 1699894800
-    },
-    "1699980217": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980217,
-        "timestamp": 1699894800
-    },
-    "1699980219": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980219,
-        "timestamp": 1699894800
-    },
-    "1699980223": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980223,
-        "timestamp": 1699894800
-    },
-    "1699980225": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980225,
-        "timestamp": 1699894800
-    },
-    "1699980227": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980227,
-        "timestamp": 1699894800
-    },
-    "1699980229": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980229,
-        "timestamp": 1699894800
-    },
-    "1699980231": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980231,
-        "timestamp": 1699894800
-    },
-    "1699980234": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980234,
-        "timestamp": 1699894800
-    },
-    "1699980235": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980235,
-        "timestamp": 1699894800
-    },
-    "1699980786": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980786,
-        "timestamp": 1699894800
-    },
-    "1699980805": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980805,
-        "timestamp": 1699894800
-    },
-    "1699980814": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980814,
-        "timestamp": 1699894800
-    },
-    "1699980821": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980821,
-        "timestamp": 1699894800
-    },
-    "1699980823": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980823,
-        "timestamp": 1699894800
-    },
-    "1699980829": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980829,
-        "timestamp": 1699894800
-    },
-    "1699980831": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980831,
-        "timestamp": 1699894800
-    },
-    "1699980833": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980833,
-        "timestamp": 1699894800
-    },
-    "1699980838": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980838,
-        "timestamp": 1699894800
-    },
-    "1699980841": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980841,
-        "timestamp": 1699894800
-    },
-    "1699980859": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699980859,
-        "timestamp": 1699894800
-    },
-    "1699982139": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699982139,
-        "timestamp": 1699981200
-    },
-    "1699982158": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1699982158,
-        "timestamp": 1699981200
-    },
-    "1700124108": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1700124108,
-        "timestamp": 1700067600
-    },
-    "1700125583": {
+    "1700398337": {
         "customerID": "-1",
         "name": "Nguoi La",
-        "timeVisit": 1700125583,
-        "timestamp": 1700067600
+        "timeVisit": 1700398337,
+        "timestamp": 1700326800
     },
-    "1700125630": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1700125630,
-        "timestamp": 1700067600
+    "1700398706": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700398706,
+        "timestamp": 1700326800
     },
-    "1700125742": {
+    "1700398845": {
         "customerID": "-1",
         "name": "Nguoi La",
-        "timeVisit": 1700125742,
-        "timestamp": 1700067600
+        "timeVisit": 1700398845,
+        "timestamp": 1700326800
     },
-    "1700125766": {
+    "1700398936": {
         "customerID": "-1",
         "name": "Nguoi La",
-        "timeVisit": 1700125766,
-        "timestamp": 1700067600
+        "timeVisit": 1700398936,
+        "timestamp": 1700326800
     },
-    "1700125769": {
+    "1700399522": {
         "customerID": "-1",
         "name": "Nguoi La",
-        "timeVisit": 1700125769,
-        "timestamp": 1700067600
+        "timeVisit": 1700399522,
+        "timestamp": 1700326800
     },
-    "1700125771": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1700125771,
-        "timestamp": 1700067600
+    "1700408879": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700408879,
+        "timestamp": 1700326800
     },
-    "1700125776": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1700125776,
-        "timestamp": 1700067600
+    "1700413200": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700413200,
+        "timestamp": 1700413200
     },
-    "1700125788": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1700125788,
-        "timestamp": 1700067600
+    "1700416242": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700416242,
+        "timestamp": 1700413200
     },
-    "1700125790": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1700125790,
-        "timestamp": 1700067600
+    "1700416837": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700416837,
+        "timestamp": 1700413200
     },
-    "1700125796": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1700125796,
-        "timestamp": 1700067600
+    "1700417104": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700417104,
+        "timestamp": 1700413200
     },
-    "1700125799": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1700125799,
-        "timestamp": 1700067600
+    "1700417247": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700417247,
+        "timestamp": 1700413200
     },
-    "1700125802": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1700125802,
-        "timestamp": 1700067600
+    "1700417419": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700417419,
+        "timestamp": 1700413200
     },
-    "1700125804": {
-        "customerID": "-1",
-        "name": "Nguoi La",
-        "timeVisit": 1700125804,
-        "timestamp": 1700067600
+    "1700417441": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700417441,
+        "timestamp": 1700413200
     }
 }
