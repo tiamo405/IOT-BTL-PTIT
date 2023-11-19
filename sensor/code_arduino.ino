@@ -36,7 +36,7 @@ void setup(){
   myServo.write(0);
   // kết nối wifi
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-
+  
   while(WiFi.status() != WL_CONNECTED){
     delay(5000);
     Serial.print(".");
@@ -57,8 +57,11 @@ void setup(){
 
 }
 
-void quay(){
+void mocua(){
   myServo.write(180);
+}
+void dongcua(){
+  myServo.write(0);
 }
 
 void loop(){
@@ -77,11 +80,11 @@ void loop(){
       action = firebaseData.stringData();
       Serial.println(action);
       if(action == "mocua"){
-        quay();
+        mocua();
         Firebase.setString(firebaseData, path+"action", "damocua");
       }
       if(action == "dongcua"){
-        quay();
+        dongcua();
         Firebase.setString(firebaseData, path+"action", "dadongcua");
       }
     }
