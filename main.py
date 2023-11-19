@@ -38,8 +38,8 @@ mybot = MyBot(token= BOT_TOKEN)
 
 def main():
     # Đọc video từ tệp tin hoặc camera (thay đổi đối số thành 0 nếu bạn muốn sử dụng camera)
-    video_path = 'test.mp4'
-    cap = cv2.VideoCapture(video_path)
+    video_path = 'test1.mp4'
+    cap = cv2.VideoCapture(0)
 
     # Đọc tần suất khung hình của luồng video (frames per second - FPS)
     fps = cap.get(cv2.CAP_PROP_FPS)
@@ -51,7 +51,7 @@ def main():
     frame_count = 0
     tmp_emb = None
 
-    thoi_gian_mo_cua = int(fps * 10)
+    thoi_gian_mo_cua = int(fps * 1)
     time_start_open = float('inf')
 
     while cap.isOpened():
@@ -68,17 +68,21 @@ def main():
         }
 
         # Nếu đã đọc đủ số frame tương ứng với 5 giây
-        if frame_count % int(fps * 5) == 0: 
-            frame = cv2.putText(frame, text=time["time"], org=(100,100), fontFace= cv2.FONT_HERSHEY_SIMPLEX,fontScale= 3,
-                        color=(0,0,255), thickness=3, lineType= cv2.LINE_AA)
-            video_writer.write(frame)
-            continue
+        # if frame_count % int(fps * 5) == 0: 
+        #     frame = cv2.putText(frame, text=time["time"], org=(100,100), fontFace= cv2.FONT_HERSHEY_SIMPLEX,fontScale= 3,
+        #                 color=(0,0,255), thickness=3, lineType= cv2.LINE_AA)
+        #     # video_writer.write(frame)
+        #     continue
 
         bbox, dsts, confidences = detector_face.detect(cv_image= frame)
+        print("confidences: ",confidences)
+
+        cv2.imwrite('debug.jpg', frame)
 
         # neeus cos nguoi thi xu li, khong co thi dong cua
-        if len(dsts) == 0 :
-            if (frame_count - time_start_open) > thoi_gian_mo_cua:
+        if len(confidences) == 0 :
+            tmp_emb = None # khởi tạo lại biến vì khi k có ai thì cần về none để tí gặp 1 ng add thông tin ng đó và sau đó mới so sánh xem bị trùng k
+            if (frame_count - time_start_open) > 0:
                 time_start_open = float('inf')
                 api.dongcua()
             continue
@@ -102,7 +106,7 @@ def main():
             tmp_emb = emb
         else :
             distance = utils.calculate_cosine_similarity(tmp_emb, emb)
-            print(distance)
+            print("distance: ",distance)
             if distance < 0.5 : # nếu cùng 1 ng 
                 continue
             else : # nếu là người khác thì gán lại tmp_emb
@@ -110,14 +114,14 @@ def main():
 
         # tìm id người đến, nếu = -1 là người lạ
         id_person = faiss_.faiss_search(emb)
+
         # tìm thông tin ng đến
         data_id_person = utils_minio.find_metadata(id_person, time)
+        print(data_id_person)
 
         #  đẩy dữ liệu + ảnh lên s3, gửi thông báo vào telegram
         utils_minio.push_data(data_id_person, face_align)
  
-        print(data_id_person)
-        
         # mo cua khi thay nguoi quen
         if id_person != -1 :
             time_start_open = frame_count
@@ -132,7 +136,7 @@ def main():
         video_writer.write(frame)
         # break
         # # Hiển thị frame với kết quả detect
-        # cv2.imshow('Face Detection', frame)
+        cv2.imshow('Face Detection', frame)
 
         # # Nhấn 'q' để thoát
         if cv2.waitKey(1) & 0xFF == ord('q'):
