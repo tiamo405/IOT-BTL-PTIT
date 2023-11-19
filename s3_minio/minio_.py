@@ -36,25 +36,24 @@ class Minio_Client():
             return None
 
     def upload_file(self, bucket=config.BUCKET, file=None):
-        # timestape = utils.datenow2timestamp()
-        # if file is None :
-        #     if file_type =='image' :
-        #         file = str(timestape)+'.jpg'
-        #     elif file_type == 'json' :
-        #         file = str(timestape)+ '.json'
-
-        self.minio_client.fput_object(
+        try:
+            self.minio_client.fput_object(
             bucket_name= bucket, object_name = file, file_path= os.path.join(config.DIR_ROOT,'tmp', file) 
         )
+        except :
+            print("khong connect den s3")
 
     def get_url(self, bucket, name_file):
-
-        url = self.minio_client.presigned_get_object(
+        try:
+            url = self.minio_client.presigned_get_object(
                 bucket, name_file 
             )
-        return url
+            return url
+        except:
+            print("khong connect den s3")
+        
     
-    def get_file_json(self, bucket=config.BUCKET, name_file = 'data.json'):
+    def get_file_json(self, bucket=config.BUCKET, name_file = 'data/data.json'):
         try:
             self.minio_client.fget_object(bucket_name=bucket, 
                                         object_name =name_file , file_path= os.path.join(config.DIR_ROOT,'tmp', name_file))
@@ -66,8 +65,6 @@ class Minio_Client():
     
 if __name__ == "__main__":  
     minio_clinet = Minio_Client()
-    # embs = minio_clinet.get_embs(bucket= '84soft', name_file='emb.npy')
-    # print(embs)
-    # minio_clinet.upload_file(file= 'debug.jpg')
-    url = minio_clinet.get_url(bucket= 'iot', name_file='data/1699593296.jpg')
-    print(url)
+
+    data = minio_clinet.get_file_json()
+    print(data)
