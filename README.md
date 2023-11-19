@@ -46,5 +46,5 @@ cd dev
 chown username ttyUSB0
 ```
 ## Tài liệu
-+ [docs](google.com)
-+ [slide](google.com)
++ [docs](https://www.google.com/)
++ [slide](https://www.google.com/)
