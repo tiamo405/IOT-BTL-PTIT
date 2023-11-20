@@ -1,4 +1,4 @@
-# 1 2 3 4 5 6
+# branch test imshow
 import cv2
 import os
 import sys
@@ -46,14 +46,15 @@ def main():
     fps = cap.get(cv2.CAP_PROP_FPS)
     #
     frame_width, frame_height = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    video_writer = cv2.VideoWriter("output.mp4", fourcc, fps, (frame_width, frame_height))
+    # fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    # video_writer = cv2.VideoWriter("output.mp4", fourcc, fps, (frame_width, frame_height))
     # Tạo biến để đếm số frame đã xử lý
     frame_count = 0
     tmp_emb = None
 
     thoi_gian_mo_cua = int(fps * 1)
     time_start_open = float('inf')
+    
 
     while cap.isOpened():
         # Đọc frame từ video
@@ -61,19 +62,14 @@ def main():
         if not ret:
             break
         frame_count +=1
+        # khởi tạo biến đc quyền gửi noti không nếu vẫn là 1 người đứng ở ngay cửa
+        send_noti = True
 
         time = {
             "timeVisit": utils_time.datenow2timestamp(),
             "timestamp": utils_time.date_to_timestamp(),
             "time" : utils_time.timestamp_to_date(utils_time.datenow2timestamp())
         }
-
-        # Nếu đã đọc đủ số frame tương ứng với 5 giây
-        # if frame_count % int(fps * 5) == 0: 
-        #     frame = cv2.putText(frame, text=time["time"], org=(100,100), fontFace= cv2.FONT_HERSHEY_SIMPLEX,fontScale= 3,
-        #                 color=(0,0,255), thickness=3, lineType= cv2.LINE_AA)
-        #     # video_writer.write(frame)
-        #     continue
 
         bbox, dsts, confidences = detector_face.detect(cv_image= frame)
         print("confidences: ",confidences)
@@ -83,58 +79,59 @@ def main():
         # neeus cos nguoi thi xu li, khong co thi dong cua
         if len(confidences) == 0 :
             tmp_emb = None # khởi tạo lại biến vì khi k có ai thì cần về none để tí gặp 1 ng add thông tin ng đó và sau đó mới so sánh xem bị trùng k
-            if (frame_count - time_start_open) > 0:
+            if (frame_count - time_start_open) > thoi_gian_mo_cua:
                 time_start_open = float('inf')
                 api.dongcua()
-            continue
-        
-        box, dst, confidence = bbox[0], dsts[0], confidences[0]
-
-        if confidence < THRESHOLD_FACE_DETECT:
-            utils.draw_error(frame, error="khuon mat khong ro")
-            continue
-
-        face_align = detector_face.align_face(frame, dst)
-        cv2.imwrite(os.path.join(config.DIR_ROOT, "face_align.jpg"), face_align)
-        
-        emb, score = detector_face.get_emb(frame, dst)
-        if score < THRESHOLD_FACE_EMB :
-            utils.draw_error(frame, error="khuon mat khong ro")
-            continue
-        
-        # so sánh người này đã đc thông báo chưa. Nếu khonagr cách gần thì là cùng 1 người, vậy không xử lí, nếu là ng lạ thì mới xử lý tiếp
-        if tmp_emb is None:
-            tmp_emb = emb
         else :
-            distance = utils.calculate_cosine_similarity(tmp_emb, emb)
-            print("distance: ",distance)
-            if distance < 0.5 : # nếu cùng 1 ng 
-                continue
-            else : # nếu là người khác thì gán lại tmp_emb
-                tmp_emb = emb
+        
+            box, dst, confidence = bbox[0], dsts[0], confidences[0]
 
-        # tìm id người đến, nếu = -1 là người lạ
-        id_person = faiss_.faiss_search(emb)
+            if confidence < THRESHOLD_FACE_DETECT:
+                utils.draw_error(frame, error="khuon mat khong ro")
+            else:
 
-        # tìm thông tin ng đến
-        data_id_person = utils_minio.find_metadata(id_person, time)
-        print(data_id_person)
+                face_align = detector_face.align_face(frame, dst)
+                cv2.imwrite(os.path.join(config.DIR_ROOT, "face_align.jpg"), face_align)
+                
+                emb, score = detector_face.get_emb(frame, dst)
+                if score < THRESHOLD_FACE_EMB :
+                    utils.draw_error(frame, error="khuon mat khong ro")
+                else :
+                    # so sánh người này đã đc thông báo chưa. Nếu khonagr cách gần thì là cùng 1 người, vậy không xử lí, nếu là ng lạ thì mới xử lý tiếp
+                    if tmp_emb is None:
+                        tmp_emb = emb
+                    else :
+                        distance = utils.calculate_cosine_similarity(tmp_emb, emb)
+                        print("distance: ",distance)
+                        if distance < 0.5 : # nếu cùng 1 ng 
+                            send_noti = False # không cho gửi
+                        else : # nếu là người khác thì gán lại tmp_emb
+                            tmp_emb = emb
 
-        #  đẩy dữ liệu + ảnh lên s3, gửi thông báo vào telegram
-        utils_minio.push_data(data_id_person, face_align)
- 
-        # mo cua khi thay nguoi quen
-        if id_person != -1 :
-            time_start_open = frame_count
-            api.mocua()
+                    # tìm id người đến, nếu = -1 là người lạ
+                    id_person = faiss_.faiss_search(emb)
 
-        frame = utils.draw_data2frame(frame, box, data_id_person)
-        cv2.imwrite('debug.jpg', frame)
+                    # tìm thông tin ng đến
+                    data_id_person = utils_minio.find_metadata(id_person, time)
+                    print(data_id_person)
 
-        mybot.send_notification(text = data_id_person["name"]+ " "+ time["time"],
-            path_image= os.path.join(config.DIR_ROOT, "face_align.jpg"))
+                    #  đẩy dữ liệu + ảnh lên s3, gửi thông báo vào telegram
+                    utils_minio.push_data(data_id_person, face_align)
+            
+                    # mo cua khi thay nguoi quen
+                    if id_person != -1 :
+                        time_start_open = frame_count
+                        api.mocua()
 
-        video_writer.write(frame)
+                    frame = utils.draw_data2frame(frame, box, data_id_person)
+                    cv2.imwrite('debug.jpg', frame)
+                    
+                    if send_noti == True: # nếu đc gửi
+                        mybot.send_notification(text = data_id_person["name"]+ " "+ time["time"],
+                        path_image= os.path.join(config.DIR_ROOT, "face_align.jpg"))
+                    
+
+            # video_writer.write(frame)
         # break
         # # Hiển thị frame với kết quả detect
         cv2.imshow('Face Detection', frame)
@@ -144,7 +141,7 @@ def main():
             break
 
     # Giải phóng các tài nguyên và đóng cửa sổ video
-    video_writer.release()
+    # video_writer.release()
     cap.release()
     cv2.destroyAllWindows()
     
