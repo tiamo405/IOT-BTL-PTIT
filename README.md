@@ -45,6 +45,14 @@ cd /
 cd dev
 chown username ttyUSB0
 ```
+## Minio_s3
+- install 
+    + google.com
+- run
+```sh
+minio server ~/minio --console-address :9090
+```
 ## Tài liệu
 + [docs](https://www.google.com/)
 + [slide](https://www.google.com/)
+

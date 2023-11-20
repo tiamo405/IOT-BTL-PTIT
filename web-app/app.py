@@ -142,6 +142,10 @@ def upload():
     flash('Invalid file format', 'error')
     return redirect(url_for('add_family.html'))
 
+@app.route('/remove_family')
+@login_required
+def remove_family():
+    return render_template('remove_family.html')
 
 @app.route('/logout')
 @login_required

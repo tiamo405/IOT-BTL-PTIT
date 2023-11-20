@@ -76,5 +76,11 @@
         "name": "Tran Phuong Nam",
         "timeVisit": 1700417441,
         "timestamp": 1700413200
+    },
+    "1700495633": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700495633,
+        "timestamp": 1700413200
     }
 }

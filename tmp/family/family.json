@@ -4,27 +4,31 @@
         "Dob": "",
         "gender": "",
         "role": "",
-        "time_upload": "01:01:1999"
+        "time_upload": "01:01:1999",
+        "Uid" : "-1"
     },
     "0": {
         "name": "Tran Phuong Nam",
         "Dob": "05/05/2002",
         "gender": "male",
         "role": "admin",
-        "time_upload": "2023-11-13 22:22:39"
+        "time_upload": "2023-11-13 22:22:39",
+        "Uid" : "0"
     },
     "1": {
         "name": "Le Phuc Hoang",
         "Dob": "26/03/2002",
         "gender": "male",
         "role": "family",
-        "time_upload": "2023-11-13 23:28:17"
+        "time_upload": "2023-11-13 23:28:17",
+        "Uid" : "1"
     },
     "2": {
         "name": "Nguyen Trong Hoang",
         "Dob": "20/03/2002",
         "gender": "male",
         "role": "family",
-        "time_upload": "2023-11-13 23:44:40"
+        "time_upload": "2023-11-13 23:44:40",
+        "Uid" : "2"
     }
 }

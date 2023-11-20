@@ -1,3 +1,4 @@
+# 1 2 3 4 5 6
 import cv2
 import os
 import sys
@@ -77,7 +78,7 @@ def main():
         bbox, dsts, confidences = detector_face.detect(cv_image= frame)
         print("confidences: ",confidences)
 
-        cv2.imwrite('debug.jpg', frame)
+        # cv2.imwrite('debug.jpg', frame)
 
         # neeus cos nguoi thi xu li, khong co thi dong cua
         if len(confidences) == 0 :
