@@ -82,5 +82,125 @@
         "name": "Nguoi La",
         "timeVisit": 1700495633,
         "timestamp": 1700413200
+    },
+    "1700496615": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700496615,
+        "timestamp": 1700413200
+    },
+    "1700496620": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700496620,
+        "timestamp": 1700413200
+    },
+    "1700496622": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700496622,
+        "timestamp": 1700413200
+    },
+    "1700496624": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700496624,
+        "timestamp": 1700413200
+    },
+    "1700496626": {
+        "customerID": "-1",
+        "name": "Nguoi La",
+        "timeVisit": 1700496626,
+        "timestamp": 1700413200
+    },
+    "1700496627": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496627,
+        "timestamp": 1700413200
+    },
+    "1700496632": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496632,
+        "timestamp": 1700413200
+    },
+    "1700496638": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496638,
+        "timestamp": 1700413200
+    },
+    "1700496644": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496644,
+        "timestamp": 1700413200
+    },
+    "1700496651": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496651,
+        "timestamp": 1700413200
+    },
+    "1700496657": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496657,
+        "timestamp": 1700413200
+    },
+    "1700496664": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496664,
+        "timestamp": 1700413200
+    },
+    "1700496670": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496670,
+        "timestamp": 1700413200
+    },
+    "1700496676": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496676,
+        "timestamp": 1700413200
+    },
+    "1700496682": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496682,
+        "timestamp": 1700413200
+    },
+    "1700496689": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496689,
+        "timestamp": 1700413200
+    },
+    "1700496694": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496694,
+        "timestamp": 1700413200
+    },
+    "1700496701": {
+        "customerID": "0",
+        "name": "Tran Phuong Nam",
+        "timeVisit": 1700496701,
+        "timestamp": 1700413200
+    },
+    "1700496724": {
+        "customerID": "1",
+        "name": "Le Phuc Hoang",
+        "timeVisit": 1700496724,
+        "timestamp": 1700413200
+    },
+    "1700496731": {
+        "customerID": "1",
+        "name": "Le Phuc Hoang",
+        "timeVisit": 1700496731,
+        "timestamp": 1700413200
     }
 }
