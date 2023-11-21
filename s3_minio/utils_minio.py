@@ -12,19 +12,25 @@ from s3_minio.minio_ import Minio_Client
 # Khởi tạo Minio Clinet
 minio = Minio_Client()
 
-def find_metadata(id_person, time):
+def find_metadata(id_person, time=None):
     if os.path.exists(os.path.join(config.DIR_ROOT, "tmp/family/family.json")):
         f = open(os.path.join(config.DIR_ROOT, "tmp/family/family.json"))
         family_data = json.load(f)
     else:
         family_data = minio.get_file_json(name_file= "family/family.json", bucket='iot')
     data = family_data[str(id_person)]
-    metadata = {
-        "customerID":str(id_person),
-        "name": data["name"],
-        "timeVisit" : time["timeVisit"],
-        "timestamp" : time["timestamp"]
-    }
+    if time is None:
+        metadata = {
+            "customerID":str(id_person),
+            "name": data["name"]
+        }
+    else:
+        metadata = {
+            "customerID":str(id_person),
+            "name": data["name"],
+            "timeVisit" : time["timeVisit"],
+            "timestamp" : time["timestamp"]
+        }
     return metadata
 
 def push_data(data_id_person, image):
