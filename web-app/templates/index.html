@@ -27,17 +27,34 @@
             height: auto;
         }
     </style>
-
+    <script>
+        // Hàm gửi yêu cầu tới backend khi ấn nút Open hoặc Close
+        function sendRequest(action) {
+            fetch(`/process_action?action=${action}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Hiển thị thông báo dựa trên phản hồi từ backend
+                    alert(data.message);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
 </head>
 
 <body>
     <h1>Welcome to the Family Portal by NamTP</h1>
     <!-- Nút để chuyển hướng đến trang /add_family -->
     {% if current_user.is_authenticated and current_user.is_admin %}
-    <a href="{{ url_for('add_family') }}">Add Family</a>
+    <a href="{{ url_for('add_family') }}"><button>Add Family</button></a>
+    <!-- Nút Open -->
+    <button onclick="sendRequest('open')">Open</button>
+
+    <!-- Nút Close -->
+    <button onclick="sendRequest('close')">Close</button>
     {% endif %}
     <!-- <a href="/remove_family"><button>Remove Family</button></a> -->
     <a href="/logout"><button>Logout</button></a>
+
     <p>This is the home page.</p>
     <table>
         <thead>

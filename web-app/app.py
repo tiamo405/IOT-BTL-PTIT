@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.utils import secure_filename
 import sys, os, json
@@ -7,14 +7,15 @@ import sys, os, json
 cwd = os.getcwd()
 sys.path.append(os.path.abspath(os.path.dirname(cwd)))
 sys.path.insert(0, cwd)
-# import file code
-# from api.api import api_add_family
+
 import config
 import utils_time
+from api.api import api_add_family
+# import sensor
+from sensor.api import mocua, dongcua
 
 # minio
 from s3_minio.minio_ import Minio_Client
-from s3_minio import utils_minio
 # Khởi tạo Minio Clinet
 minio = Minio_Client()
 
@@ -24,6 +25,7 @@ UPLOAD_FOLDER = 'uploads'
 app = Flask(__name__)
 # Thư mục để lưu trữ ảnh
 UPLOAD_FOLDER = 'uploads'
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Phần mở rộng tệp cho phép
@@ -134,8 +136,8 @@ def upload():
         print(f"Image saved as: {filename}")
 
         # bat dau them vao data base
-        # error = api_add_family(image= os.path.join(DIR_ROOT,app.config['UPLOAD_FOLDER'], filename), name= name, gender= gender, dob= dob)
-        error = "debug"
+        error = api_add_family(image= os.path.join(DIR_ROOT,app.config['UPLOAD_FOLDER'], filename), name= name, gender= gender, dob= dob)
+        # error = "debug"
         # Trả về kết quả thành công
         if error == "File uploaded successfully" :
             flash(error, 'success')
@@ -151,6 +153,24 @@ def upload():
 @login_required
 def remove_family():
     return render_template('remove_family.html')
+
+@app.route('/process_action', methods=['GET'])
+def process_action():
+    action = request.args.get('action')
+
+    # Xử lý action tùy thuộc vào action được gửi từ frontend
+    if action == 'open':
+        # Thực hiện các thao tác cần thiết khi ấn nút Open
+        result_message = mocua()
+    elif action == 'close':
+        # Thực hiện các thao tác cần thiết khi ấn nút Close
+        result_message = dongcua()
+    else:
+        # Trường hợp không xác định action
+        result_message = 'Invalid action.'
+
+    # Trả về kết quả dưới dạng JSON
+    return jsonify({'message': result_message})
 
 @app.route('/logout')
 @login_required
