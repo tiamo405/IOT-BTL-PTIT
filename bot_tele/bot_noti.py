@@ -44,11 +44,11 @@ class MyBot:
     
     # lệnh đóng mở chửa
     def mo_cua(self, message):
-        mocua()
-        self.bot.reply_to(message, "Da mo cua")
+        noti = mocua()
+        self.bot.reply_to(message, noti)
     def dong_cua(self, message):
-        dongcua()
-        self.bot.reply_to(message, "Da dong cua")
+        noti = dongcua()
+        self.bot.reply_to(message, noti)
     
     # cái này để ghi nhận sự kiện hay sao ý, quên rùi
     def start_polling(self):
