@@ -33,7 +33,9 @@
 <body>
     <h1>Welcome to the Family Portal by NamTP</h1>
     <!-- Nút để chuyển hướng đến trang /add_family -->
-    <a href="/add_family"><button>Add Family</button></a>
+    {% if current_user.is_authenticated and current_user.is_admin %}
+    <a href="{{ url_for('add_family') }}">Add Family</a>
+    {% endif %}
     <!-- <a href="/remove_family"><button>Remove Family</button></a> -->
     <a href="/logout"><button>Logout</button></a>
     <p>This is the home page.</p>

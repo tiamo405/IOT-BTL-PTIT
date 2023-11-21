@@ -38,13 +38,15 @@ login_manager.login_view = 'login'
 
 # Mock User Database
 class User(UserMixin):
-    def __init__(self, user_id, username, password):
+    def __init__(self, user_id, username, password, is_admin=False):
         self.id = user_id
         self.username = username
         self.password = password
+        self.is_admin = is_admin
 
 users = {
-    '1': User('1', '1', '1')
+    '1': User('1', 'admin', 'admin', is_admin=True),
+    '2': User('2', 'user', 'user'),
 }
 
 # Flask-Login callback to load a user
@@ -99,6 +101,9 @@ def index():
 @app.route('/add_family')
 @login_required
 def add_family():
+    if not current_user.is_admin:
+        flash('Permission denied. Only admins can access this page.', 'error')
+        return redirect(url_for('index'))
     return render_template('add_family.html')
 
 @app.route('/upload_family', methods=['POST'])
