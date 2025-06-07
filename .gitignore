@@ -163,3 +163,4 @@ data-face/
 *.png
 web-app/uploads/
 debug.jpg
+*.json
