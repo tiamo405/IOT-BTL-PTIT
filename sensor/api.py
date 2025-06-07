@@ -1,10 +1,10 @@
-import time
-from firebase import firebase
 import os
 import sys
 root = os.getcwd()
 pwd = os.path.dirname(os.path.realpath("."))
 sys.path.insert(0, root)
+import time
+from firebase import firebase
 import config
 
 FB = firebase.FirebaseApplication(config.FIREBASE_URL, None)

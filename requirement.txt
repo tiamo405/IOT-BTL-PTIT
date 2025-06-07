@@ -1,8 +1,7 @@
-opencv-python
-skimage
-sklearn
+# scikit-image
+# pip install scikit-learn
 tritonclient
-grpc
+python -m pip install grpcio
 opencv-python
 requests
 pytz

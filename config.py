@@ -29,5 +29,5 @@ THRESHOLD_FACE_DETECT = 0.5
 THRESHOLD_FACE_EMB = 0.3
 
 # Firebase
-FIREBASE_URL = "https://iot-ptit-61e0e-default-rtdb.firebaseio.com/"
 
+FIREBASE_URL = os.getenv("FIREBASE_URL")
